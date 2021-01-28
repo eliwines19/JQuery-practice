@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>embedding jquery and syntax</title>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <style>
+            .bluebox {
+                background-color: #3a5795;
+                color: white;
+                height: 100px;
+                width: 300px;
+            }
+
+            .yellowbox {
+                background-color: rgb(222, 224, 85);
+                height: 100px;
+                width: auto;
+            }
+
+            .applebox {
+                background-color: purple;
+            }
+
+            .greenbox {
+                background-color: #31af37;
+                height: 100px;
+                width: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <button id="changefb">Change FB</button>
+        <button id="changem">Change Microsoft</button>
+        <button id="showm">Show Microsoft</button>
+        <button id="changeg">change great</button>
+        <div class="bluebox">
+            <p>Facebook <span id="great">is great</span></p>
+        </div>
+        <p>Paragraph</p>
+        <div class="yellowbox applebox">
+            <p>Apple</p>
+        </div>
+        <div class="greenbox">
+            <p>Microsoft</p>
+        </div>
+        <p>Enter your name: <input type="text"></p>
+
+<script>
+$(function(){
+    // changes fb div width by number between -50 and 50
+    $("#changefb").click(function(){
+        $(".bluebox").css("width", 100*Math.random()-50 + $(".bluebox").width())
+        $(".bluebox").addClass("greenbox")
+        // window.alert(`Here is the current height of the facebook div: ${$(".bluebox").innerHeight()}`)
+        // window.alert(`Here is the current height of the facebook div: ${$(".bluebox").outerHeight()}`)
+    })
+
+    $(".yellowbox").click(function(){
+        // removes the applebox class from the apple div
+        // $(".yellowbox").removeClass("applebox");
+
+        $(".yellowbox").css("position", "absolute")
+        $(".yellowbox").css({
+                "top" : 200*Math.random(),
+                "left" : 200*Math.random(),
+                "background-color" : `rgb(${Math.floor(256*Math.random())},${Math.floor(256*Math.random())},${Math.floor(256*Math.random())},${Math.floor(256*Math.random())})`
+            })
+    })
+
+    // removes greenbox class
+    $("#changem").click(function(){
+        $(".greenbox").toggleClass("greenbox")
+    })
+
+    // changes display property to none
+    $(".greenbox").dblclick(function(){
+            $(this).hide();
+        })
+
+    // removes 'display: none' property
+    $("#showm").click(function(){
+        $(".greenbox").show();
+    })
+
+    // wraps #great in a div
+    $("#changeg").click(function(){
+        $("#great").wrap("<div></div>")
+    })
+})
+</script>
+
+    </body>
+</html>
