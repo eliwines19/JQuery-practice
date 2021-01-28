@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>embedding jquery and syntax</title>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <style>
+            .bluebox {
+                background-color: #3a5795;
+                color: white;
+                height: 100px;
+                width: auto;
+            }
+
+            .yellowbox {
+                background-color: rgb(222, 224, 85);
+                height: 100px;
+                width: auto;
+            }
+
+            .greenbox {
+                background-color: #31af37;
+                height: 100px;
+                width: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <button id="button">button</button>
+        <div class="bluebox">
+            <p>Facebook <span id="great">is great</span></p>
+        </div>
+        <p>Paragraph</p>
+        <div class="yellowbox">
+            <p>Apple</p>
+        </div>
+        <div class="greenbox">
+            <p>Microsoft</p>
+        </div>
+
+<script>
+$(function(){
+    $(".bluebox").load("ajax/data.tx");
+    $(".yellowbox").load("ajax/data.tx #p1");
+
+    // ajax call to ajax/data file
+    // $("#button").click(function(){
+    //     $.ajax({
+    //         url : "ajax/data.tx",
+    //         success : function(data){
+    //             console.log(data)
+    //             $(".greenbox").html(data);
+    //         }
+    //     })
+    // })
+
+
+    // ajax call to ajax/data file using .done()
+    $("#button").click(function(){
+        $.ajax({url : "ajax/data.tx"}).done(function(data){
+            $(".greenbox").html(data)
+        })
+    })
+
+})
+</script>
+
+    </body>
+</html>
