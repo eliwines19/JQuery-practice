@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>draggable</title>
+        <!-- jquery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+        <!-- jquery ui -->
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <style>
+            .bluebox {
+                background-color: #3a5795;
+                color: white;
+                height: 100px;
+                width: auto;
+            }
+
+            .yellowbox {
+                background-color: rgb(222, 224, 85);
+                height: 100px;
+                width: auto;
+            }
+
+            .greenbox {
+                background-color: #31af37;
+                height: 100px;
+                width: auto;
+            }
+
+            #droppable {
+                background-color: violet;
+                color: white;
+                height: 300pt;
+                width: auto;
+                margin-top: 20pt;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="bluebox">
+            <p>Facebook <span id="great">is great</span></p>
+        </div>
+        <p>Paragraph</p>
+        <div class="yellowbox">
+            <ul id="list">
+                <li>apple</li>
+                <li>banana</li>
+                <li>orange</li>
+                <li>lemons</li>
+            </ul>
+        </div>
+        <div class="greenbox">
+            <p>Microsoft</p>
+        </div>
+        <div id="droppable" class="ui-corner-all">
+            <p>drop your fruit here</p>
+        </div>
+
+<script>
+var message = ["please!", "leave me alone!", "drop me", "come on!"];
+$(function(){
+    // makes fb div draggable
+    $(".bluebox").draggable();
+
+    // makes apple div draggable on the y axis
+    $(".yellowbox").draggable({
+        axis: "y"
+    });
+
+    // goes back to original location when done dragging
+    // changes backround color of fb div
+    // changes to random color every time it is dragged
+    // changes apple div background color when done dragging
+    // changes text in msoft div when done dragging
+    $(".greenbox").draggable({
+        revert: true,
+        start: function(){
+            $(".bluebox").css("background-color", "purple")
+        },
+        drag: function(){
+            $(".greenbox").css(
+                "background-color",
+                `rgb(
+                    ${Math.floor(256*Math.random())},
+                    ${Math.floor(256*Math.random())},
+                    ${Math.floor(256*Math.random())},
+                    ${Math.floor(256*Math.random())}
+                )`
+            )
+            $(".greenbox").find("p").html(message[Math.floor(4*Math.random())]);
+        },
+        stop: function(){
+            $(".yellowbox").css("background-color", "orange")
+            $(".greenbox").html("<p>finally!</p>")
+        }
+    });
+
+    // creates a clone of the li when dragged and appends to the body
+    $("#list").find("li").draggable({
+        helper: "clone",
+        appendTo: "body" 
+    });
+
+    // removes the p tag, adds a new div containing the text dragged into the box
+    // only accepts the #list li
+    $("#droppable").droppable({
+        drop: function(e, ui){
+            $(this).find("p").remove();
+            $("<div></div>").text(ui.draggable.text()).appendTo(this)
+        },
+        accept: "#list li"
+    });
+})
+</script>
+
+    </body>
+</html>
