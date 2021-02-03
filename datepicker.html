@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>date picker</title>
+        <!-- jquery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+        <!-- jquery ui -->
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <style>
+            .bluebox {
+                background-color: #3a5795;
+                color: white;
+                height: 100px;
+                width: auto;
+            }
+
+            .yellowbox {
+                background-color: rgb(222, 224, 85);
+                height: 100px;
+                width: auto;
+            }
+
+            .greenbox {
+                background-color: #31af37;
+                height: 100px;
+                width: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="bluebox">
+            <p>flight departure date: <input id="departure"></p>
+            <p>return: <input id="return"></p>
+        </div>
+        <p>Paragraph</p>
+        <div class="yellowbox">
+            <p>Apple</p>
+        </div>
+        <div class="greenbox">
+            <p>Microsoft</p>
+        </div>
+
+<script>
+$(function(){
+    $("#departure").datepicker({
+        showAnim: "drop",
+        changeYear: true,
+        numberOfMonths: 2,
+        dateFormat: "M/dd/y",
+        showOn: "button",
+        buttonImage: "",
+        buttonImageOnly: false,
+        buttonText: "choose departure date",
+        minDate: +1,
+        maxdate: "+12M +10D",
+        onClose: function(selectedDate){
+            $("#return").datepicker("option", "minDate", selectedDate)
+        },
+        showWeek: true
+    });
+
+    $("#return").datepicker({
+        dateFormat: "M/dd/y",
+        showOn: "button",
+        buttonText: "choose return date",
+        numberOfMonths: 2,
+        showAnim: "drop"
+    });
+})
+</script>
+
+    </body>
+</html>
