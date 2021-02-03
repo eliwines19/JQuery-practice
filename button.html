@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>button</title>
+        <!-- jquery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+        <!-- jquery ui -->
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/blitzer/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <style>
+            .bluebox {
+                background-color: #3a5795;
+                color: white;
+                height: 100px;
+                width: auto;
+            }
+
+            .yellowbox {
+                background-color: rgb(222, 224, 85);
+                height: 100px;
+                width: auto;
+            }
+
+            .greenbox {
+                background-color: #31af37;
+                height: 100px;
+                width: auto;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="bluebox" id="facebook">
+            <div id="checkboxes">
+                <input type="checkbox" name="" id="checkbox1">
+                <label for="checkbox1">audi</label>
+
+                <input type="checkbox" name="" id="checkbox2">
+                <label for="checkbox2">bmw</label>
+
+                <input type="checkbox" name="" id="checkbox3">
+                <label for="checkbox3">mercedes</label>
+            </div>
+        </div>
+
+        <div class="yellowbox">
+            <input type="checkbox" name="" id="checkbox">
+            <label for="checkbox">checkbox</label>
+        </div>
+        <div class="greenbox">
+            <form action="">
+                <div id="radioboxes">
+                    <input type="radio" name="radioboxes" id="radiobox1">
+                    <label for="radiobox1">Ford</label>
+
+                    <input type="radio" name="radioboxes" id="radiobox2">
+                    <label for="radiobox2">Chevy</label>
+
+                    <input type="radio" name="radioboxes" id="radiobox3">
+                    <label for="radiobox3">Hundai</label>
+                </div>
+            </form>
+        </div>
+        <button id="button1">button 1</button>
+        <button id="button2">button 2</button>
+        <button id="button3">button 3</button>
+
+<script>
+$(function(){
+    $("#button1").button();
+
+    $("#button2").button({
+        icons: {
+            primary: "ui-icon-folder-open"
+        },
+        text: false
+    });
+
+    $("#button3").button({
+        icons: {
+            primary: "ui-icon-heart",
+            secondary: "ui-icon-star"
+        }
+    });
+
+    $("#checkbox").button();
+
+    $("#checkboxes").buttonset();
+
+    $("#radioboxes").buttonset();
+})
+</script>
+
+    </body>
+</html>
