@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>menus</title>
+
+        <!-- JQuery -->
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+        <!-- JQuery UI -->
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <style>
+
+            .bluebox {
+                height: auto;
+                width: auto;
+            }
+
+            .ui-menu {
+                width: 100pt;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="bluebox ui-corner-all" id="facebook">
+            <ul id="continents">
+                <li class="ui-widgets-header">
+                    North America
+                    <ul>
+                        <li>
+                            USA
+                            <ul>
+                                <li>Texas</li>
+                                <li>California</li>
+                                <li>New York</li>
+                            </ul>
+                        </li>
+                        <li>Canada</li>
+                    </ul>
+                </li>
+                <li>Eurpoe</li>
+                <li>South America</li>
+            </ul>
+        </div>
+
+<script>
+$(function(){
+    $("#continents").menu();
+
+
+})
+</script>
+
+    </body>
+</html>
