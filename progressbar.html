@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>progress bar</title>
+
+        <!-- JQuery -->
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+        <!-- JQuery UI -->
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <style>
+
+            .bluebox {
+                background-color: rgb(32, 32, 209);
+                height: 100px;
+                width: auto;
+            }
+
+            #label {
+                position: absolute;
+                padding: 10px;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <div class="bluebox ui-corner-all" id="facebook">
+            <p>Facebook</p>
+        </div>
+
+        <div id="progress">
+            <div id="label"></div>
+        </div>
+
+        <button id="increase-bar">increase progress</button>
+
+<script>
+$(function(){
+    $("#progress").progressbar({
+        value: 0
+    });
+
+    $("#increase-bar").click(function(){
+        var x = 0;
+        var interval = setInterval(function(){
+            x++;
+            $("#label").text(`In progress: ${x}% complete`)
+            $("#progress").progressbar({
+                value: x
+            });
+            if(x > 99){
+                clearInterval(interval);
+                $("#label").css("color", "green")
+                $("#label").text("Complete!")
+            }
+        }, 50)
+    })
+})
+</script>
+
+    </body>
+</html>
